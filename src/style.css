@@ -1,0 +1,141 @@
+html{
+    height: 100%;
+}
+body{
+    margin: 0;
+    padding: 0;
+    height:100vh;
+    background: linear-gradient(to bottom, #e7f9fee7, #b7b7b7aa, #edefefd1);
+    background-repeat: no-repeat;
+    
+}
+
+.select {
+    display: flex;
+    justify-content: center;
+    margin-top: 125px; 
+}
+
+#admin, #stu{
+    margin-right: 40px;
+    font-size: 23px;
+    text-decoration: none;
+    padding: 5px;
+    padding-left: 12px;
+    padding-right: 12px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    color: #014810;
+    /* background: rgba(241, 238, 235, 0.945); */
+    background: transparent;
+    border: 1px solid #014810;
+    border-radius: 5px;
+    transition: .3s;
+
+
+}
+
+#admin:hover, #stu:hover{
+    color: #f4f6f9;
+    background: #014810;
+    border: none;
+    box-shadow: none;
+}
+
+.formm{
+    position: absolute;
+    top:50%;
+    left:50%;
+    width: 600px;
+    padding: 40px;
+    transform: translate(-50%,-50%);
+    background: rgb(241, 238, 235);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(21, 22, 0, 0.652);
+    border-radius: 10px;
+   
+    
+}
+.formm .span{
+    margin-top: -15px;
+    margin-bottom: 6%;
+    display: flex;
+    justify-content: space-between;
+          
+}
+
+.span .right h3 a{
+    font-size: x-large;
+    color: #1b53fc;
+}
+
+
+.formm .input-field{
+    position: relative;
+    margin: 10px 0;
+
+}
+.formm .input-field input
+{
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 28px;
+    border: 1px solid hsla(0, 1%, 52%, 0.767);
+    border-radius: 5px;
+    outline-color: #5d5f02;
+    background:rgba(255, 255, 255, 0.174);
+}
+.formm .input-field label{
+    position: absolute;
+    top: -39px;
+    left:0;
+    padding: 15px 0;
+    font-size: 16px;
+    color: #454344;
+    font-weight: bold;
+    pointer-events: none;
+    transition: .5s;
+}
+
+
+.formm button
+{
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    color: #f4500a;
+    font-size: 16px;
+    background: transparent;
+    text-transform: uppercase;
+    border: none;
+    font-weight: bold;
+    transition: .5s;
+    margin-top: 21px;
+    letter-spacing: 1px;   
+}
+
+.formm button:hover
+{
+    background:white;
+    color: #170000;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #c5c9c0,
+    0 0 25px #f3fbee,
+    0 0 50px #ededed,
+    0 0 100px #b6b6b6;
+}
+.formm .Log{
+    margin-top: 9px;
+    padding: 5px;
+    text-align: center;
+}
+
+.formm .Log a{
+    text-decoration: none;
+    color: #0435c9;
+    font-size: 20px;
+    font-weight: bold;
+}
