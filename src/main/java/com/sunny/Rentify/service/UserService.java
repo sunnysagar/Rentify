@@ -2,12 +2,18 @@ package com.sunny.Rentify.service;
 
 
 import com.sunny.Rentify.exception.DuplicateUserException;
+<<<<<<< HEAD
 import com.sunny.Rentify.model.AuthenticationResponse;
 import com.sunny.Rentify.model.UserEntity;
 import com.sunny.Rentify.repository.UserRepository;
 import com.sunny.Rentify.component.JwtUtil;
 import jakarta.transaction.Transactional;
 import org.springframework.security.authentication.BadCredentialsException;
+=======
+import com.sunny.Rentify.model.UserEntity;
+import com.sunny.Rentify.repository.UserRepository;
+import jakarta.transaction.Transactional;
+>>>>>>> cb952d6bbf9dacf8ba40ebde8bbec832d10c0e16
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,6 +25,7 @@ import java.util.Optional;
 @Service
 public class UserService implements UserDetailsService {
 
+<<<<<<< HEAD
     private final UserRepository userRepository;
     private final JwtUtil jwtUtil;
 
@@ -28,12 +35,22 @@ public class UserService implements UserDetailsService {
     }
 
     // Get all Users
+=======
+    UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    // Get Users
+>>>>>>> cb952d6bbf9dacf8ba40ebde8bbec832d10c0e16
 
     public List<UserEntity> getAllUsers()
     {
         return userRepository.findAll();
     }
 
+<<<<<<< HEAD
     // get current user from token
     public UserEntity getUserFromToken(String token){
         String email = jwtUtil.getUsername(token);
@@ -44,12 +61,15 @@ public class UserService implements UserDetailsService {
         return userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
+=======
+>>>>>>> cb952d6bbf9dacf8ba40ebde8bbec832d10c0e16
     public void registerUser(UserEntity user)
     {
         if(userRepository.findByEmail(user.getEmail()).isPresent()){
             throw new DuplicateUserException("Duplicate User");
         }
 
+<<<<<<< HEAD
 //        UserEntity newUser = new UserEntity();
 //        newUser.setFirstName(user.getFirstName());
 //        newUser.setLastName(user.getLastName());
@@ -78,6 +98,21 @@ public class UserService implements UserDetailsService {
 
     @Transactional
     public boolean authenticatedUser(String email, String password) {
+=======
+        UserEntity newUser = new UserEntity();
+        newUser.setFirstName(user.getFirstName());
+        newUser.setLastName(user.getLastName());
+        newUser.setEmail(user.getEmail());
+        newUser.setPhoneNumber(user.getPhoneNumber());
+        newUser.setPassword(user.getPassword());
+        newUser.setUserType(user.getUserType());
+
+        userRepository.save(newUser);
+    }
+
+    @Transactional
+    public boolean authenticateUser(String email, String password) {
+>>>>>>> cb952d6bbf9dacf8ba40ebde8bbec832d10c0e16
         // Retrieve the user from the database using the username
         Optional<UserEntity> user = userRepository.findByEmail(email);
 
@@ -90,16 +125,23 @@ public class UserService implements UserDetailsService {
 
     }
 
+<<<<<<< HEAD
     // Load user by username
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
        UserEntity user = userRepository.findByEmail(email).orElseThrow(
                () -> new UsernameNotFoundException("User not found with email:" + email));
+=======
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+       UserEntity user = userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User not found with email:" + email));
+>>>>>>> cb952d6bbf9dacf8ba40ebde8bbec832d10c0e16
        return org.springframework.security.core.userdetails.User.withUsername(user.getEmail())
                .password(user.getPassword())
                .authorities(user.getUserType())
                .build();
     }
+<<<<<<< HEAD
 
     // generate token for user
     public String generateTokenForUser(UserDetails userDetails){
@@ -142,3 +184,6 @@ public class UserService implements UserDetailsService {
 //    }
 }
 
+=======
+}
+>>>>>>> cb952d6bbf9dacf8ba40ebde8bbec832d10c0e16
