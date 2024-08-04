@@ -20,7 +20,6 @@ public class PropertyEntity {
     private int bathrooms;
     private double price;
     private String nearbyAmenities;
-<<<<<<< HEAD
     private String propertyType;
     private String image;
 
@@ -28,26 +27,14 @@ public class PropertyEntity {
     @ManyToOne @JoinColumn(name = "seller_id", nullable = false)
     private UserEntity seller;
 
-=======
-
-//    @NotNull(message = "sellerId is required")
-//    @ManyToOne @JoinColumn(name = "sellerId")
-//    private UserEntity seller;
-
-    private long sellerId;
->>>>>>> cb952d6bbf9dacf8ba40ebde8bbec832d10c0e16
 
     public PropertyEntity() {
     }
 
-<<<<<<< HEAD
     public PropertyEntity(long id, String title, String description, String address,
                           double area, int bedrooms, int bathrooms, double price,
                           String nearbyAmenities, String propertyType, String image, UserEntity seller) {
-=======
-    public PropertyEntity(long id, String title, String description,
-                          String address, double area, int bedrooms, int bathrooms, double price, String nearbyAmenities, long sellerId) {
->>>>>>> cb952d6bbf9dacf8ba40ebde8bbec832d10c0e16
+
         this.id = id;
         this.title = title;
         this.description = description;
@@ -57,18 +44,13 @@ public class PropertyEntity {
         this.bathrooms = bathrooms;
         this.price = price;
         this.nearbyAmenities = nearbyAmenities;
-<<<<<<< HEAD
         this.propertyType = propertyType;
         this.image = image;
         this.seller = seller;
     }
 
 
-=======
-        this.sellerId = sellerId;
-    }
 
->>>>>>> cb952d6bbf9dacf8ba40ebde8bbec832d10c0e16
     public long getId() {
         return id;
     }
@@ -141,7 +123,6 @@ public class PropertyEntity {
         this.nearbyAmenities = nearbyAmenities;
     }
 
-<<<<<<< HEAD
     public String getPropertyType() {
         return propertyType;
     }
@@ -164,13 +145,5 @@ public class PropertyEntity {
 
     public void setSeller(UserEntity seller) {
         this.seller = seller;
-=======
-    public Long getSellerId() {
-        return sellerId;
-    }
-
-    public void setSellerId(Long sellerId) {
-        this.sellerId = sellerId;
->>>>>>> cb952d6bbf9dacf8ba40ebde8bbec832d10c0e16
     }
 }
