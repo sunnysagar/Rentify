@@ -34,9 +34,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry){
-        registry.addEndpoint("/websocket")
-                .setAllowedOrigins("http://localhost:3000")
-                .withSockJS();
+        registry.addEndpoint("/websocket").setAllowedOrigins("http://localhost:3000").withSockJS();
 //        registry.addEndpoint("/websocket");
     }
 
@@ -84,28 +82,3 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     }
 }
 
-//2
-
-//@Configuration
-//@EnableWebSocket
-//public class WebSocketConfig implements WebSocketConfigurer {
-//
-//    @Override
-//    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-//        registry.addHandler(new CustomWebSocketHandler(), "/websocket")
-//                .setAllowedOrigins("http://localhost:3000")
-//                .addInterceptors(new HttpSessionHandshakeInterceptor())
-//                .withSockJS();
-//    }
-//
-//    @Bean
-//    public SimpMessagingTemplate simpMessagingTemplate(SimpUserRegistry simpUserRegistry) {
-//        return new SimpMessagingTemplate((MessageChannel) simpUserRegistry);
-//    }
-//
-////    @Bean
-////    public SimpUserRegistry simpUserRegistry() {
-////        return new SimpleSimpUserRegistry();
-////    }
-//
-//}

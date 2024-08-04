@@ -31,12 +31,6 @@ public class UserEntity {
 
     private String userType;
 
-<<<<<<< HEAD
-//    private String refreshToken;
-
-=======
->>>>>>> cb952d6bbf9dacf8ba40ebde8bbec832d10c0e16
-
     public UserEntity() {
     }
 
@@ -49,10 +43,7 @@ public class UserEntity {
         this.phoneNumber = phoneNumber;
         this.password = password;
         this.userType = userType;
-<<<<<<< HEAD
-//        this.refreshToken = refreshToken;
-=======
->>>>>>> cb952d6bbf9dacf8ba40ebde8bbec832d10c0e16
+
     }
 
     public Long getId() {
@@ -110,16 +101,6 @@ public class UserEntity {
     public void setUserType(String userType) {
         this.userType = userType;
     }
-<<<<<<< HEAD
 
-//    public String getRefreshToken() {
-//        return refreshToken;
-//    }
-//
-//    public void setRefreshToken(String refreshToken) {
-//        this.refreshToken = refreshToken;
-//    }
-=======
->>>>>>> cb952d6bbf9dacf8ba40ebde8bbec832d10c0e16
 }
 

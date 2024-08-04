@@ -3,7 +3,6 @@ package com.sunny.Rentify.controller;
 
 import com.sunny.Rentify.exception.PropertyNotFoundException;
 import com.sunny.Rentify.model.PropertyEntity;
-<<<<<<< HEAD
 import com.sunny.Rentify.model.UserEntity;
 import com.sunny.Rentify.repository.UserRepository;
 import com.sunny.Rentify.service.PropertyService;
@@ -13,17 +12,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.security.core.Authentication;
-=======
-import com.sunny.Rentify.service.PropertyService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
->>>>>>> cb952d6bbf9dacf8ba40ebde8bbec832d10c0e16
+
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.Year;
-<<<<<<< HEAD
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -77,22 +71,32 @@ public class PropertyController {
         }
 
         property.setSeller(user);
-        propertyService.addProperty(property);
+        PropertyEntity addedProperty = propertyService.addProperty(property);
+
+        Map<String, Object> newProperty = new HashMap<>();
+        newProperty.put("type", "PROPERTY_ADDED");
+        newProperty.put("data", addedProperty);
+        try{
+            template.convertAndSend("/topic/properties", newProperty);
+        }catch (Exception e){
+            ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(e.getMessage());
+        }
+
+
         return ResponseEntity.status(HttpStatus.CREATED).body("Property added successfully!");
     }
 
     @PatchMapping("/update/{propertyId}")
-    public ResponseEntity<?> updateProperty(@PathVariable("propertyId") long propertyId, @RequestBody Map<String, Object> updates, Authentication authentication)
-    {
+    public ResponseEntity<?> updateProperty(@PathVariable("propertyId") long propertyId, @RequestBody Map<String, Object> updates, Authentication authentication) {
         String email = authentication.getName();
         UserEntity seller = userService.getUserByEmail(email);
 
-        if(!"Seller".equalsIgnoreCase(seller.getUserType())){
+        if (!"Seller" .equalsIgnoreCase(seller.getUserType())) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Only seller can update the property details");
         }
 
         PropertyEntity existingProperty = propertyService.getPropertyById(propertyId);
-        if(existingProperty == null || !existingProperty.getSeller().getId().equals(seller.getId())){
+        if (existingProperty == null || !existingProperty.getSeller().getId().equals(seller.getId())) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Unauthorized access or property not found.");
         }
 //        property.setId(propertyId);
@@ -106,55 +110,13 @@ public class PropertyController {
         message.put("data", updatedProperty);
         try {
             template.convertAndSend("/topic/properties", message);
-        }catch (Exception e){
-            System.err.println("Error sending message: "+e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Error sending message: " + e.getMessage());
         }
         return ResponseEntity.ok(updatedProperty);
-=======
-import java.util.List;
-
-@RestController
-@RequestMapping("/property")
-@Validated
-public class PropertyController {
-
-    private final PropertyService propertyService;
-
-    public PropertyController(PropertyService propertyService) {
-        this.propertyService = propertyService;
     }
 
-    //Read all property
-    @GetMapping()
-    public List<PropertyEntity> getAllProperty()
-    {
-        return propertyService.getAllProperty();
-    }
-
-    @PostMapping
-    public ResponseEntity<?> addProperty(@Valid @RequestBody PropertyEntity property){
-
-
-        // create the book
-        if(propertyService.createProperty(property)){
-            return ResponseEntity.status(HttpStatus.CREATED).body("Property added successfully.");
-        }
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Unsuccessfully");
-    }
-
-    @PutMapping("/update/{propertyId}")
-    public ResponseEntity<?> updateProperty(@PathVariable("propertyId") long propertyId, @Valid @RequestBody PropertyEntity property)
-    {
-        if(propertyService.updateProperty(propertyId, property)){
-            return ResponseEntity.status(HttpStatus.CREATED).body("Property"+ propertyId +" updated successfully.");
-
-        }
-        throw new PropertyNotFoundException("Property with ID " + propertyId + " not found.");
-
->>>>>>> cb952d6bbf9dacf8ba40ebde8bbec832d10c0e16
-    }
-
-    // Deleting book from DB
+    // Deleting property from DB
     @DeleteMapping("/delete/{propertyId}")
     public ResponseEntity<String> deleteBook(@PathVariable("propertyId") long propertyId){
         propertyService.deletePropertyById(propertyId);
