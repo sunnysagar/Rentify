@@ -1,0 +1,82 @@
+.seller-dashboard {
+    padding: 20px;
+    height: 90%;
+    background: linear-gradient(to bottom, #e7f9fee7, #b7b7b7aa, #edefefd1);
+  }
+  
+  .seller-dashboard h1 {
+    margin-top: -5px;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 60px;
+  }
+  
+  .property-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -10px 100px;
+    gap: 20px;
+  }
+  
+  .property-card {
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    overflow: hidden;
+  }
+  
+  .property-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+  }
+  
+  .property-card-content {
+    padding: 15px;
+  }
+  
+  .property-card h2 {
+    margin: 0 0 10px;
+    font-size: 1.25em;
+  }
+  
+  .desc {
+    margin: 2px;
+  }
+  
+  .property-details {
+    margin-top: 15px;
+  }
+  
+  .property-detail {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 10px;
+  }
+  
+  .property-detail strong {
+    color: #555;
+    margin-right: 5px;
+  }
+  
+  .property-detail p {
+    margin: 0;
+    color: #333;
+  }
+
+  .curd-btn{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px;
+  }
+
+  .curd-btn button{
+    margin: 5px;
+    background-color: #d2ba05;
+    border-radius: 9px;
+    text-decoration: none;
+  }
+  

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -65,7 +64,7 @@ const Signup = () => {
           </div>
         </div>
         <form onSubmit={handleSubmit}>
-          <span>
+          <span className='name-field'>
             <div className="input-field">
               <label>First Name</label>
               <input
@@ -127,7 +126,7 @@ const Signup = () => {
           <button type="submit">Sign Up</button>
           {error && <span className="error">{error}</span>}
           <div className="Log">
-            <a href="/users/login">Already have an account? </a>
+            <a href="/login">Already have an account? </a>
           </div>
           <ToastContainer />
         </form>

@@ -1,13 +1,5 @@
 html{
-    height: 100%;
-}
-body{
-    margin: 0;
-    padding: 0;
-    height:100vh;
-    background: linear-gradient(to bottom, #e7f9fee7, #b7b7b7aa, #edefefd1);
-    background-repeat: no-repeat;
-    
+    height: 100vh;
 }
 
 .select {
@@ -74,6 +66,10 @@ body{
     position: relative;
     margin: 10px 0;
 
+}
+.formm.name-field{
+    display: flex;
+    justify-items: center;
 }
 .formm .input-field input
 {

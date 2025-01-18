@@ -11,22 +11,32 @@ export const useAuth = () =>{
 export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [authToken, setAuthToken] = useState(null);
+    const [userType, setuserType] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
-        const token = localStorage.getItem('authToken');
-        if(token){
+        const token = localStorage.getItem('token');
+        const storedUserType = localStorage.getItem('userType');
+        if(token && storedUserType){
             setAuthToken(token);
+            setuserType(storedUserType);
             setIsAuthenticated(true);
+
+            // Navigate to the previous path or a default authenticated page
+            const savedPath = sessionStorage.getItem('currentPath') || '/';
+            navigate(savedPath);
         }
+        
     }, []);
 
     const login = async(email, password) => {
         try {
             const response = await axios.post('http://localhost:8010/rentify/users/login', {email, password});
             setAuthToken(response.data.token);
+            setuserType(response.data.userType);
             setIsAuthenticated(true);
-            localStorage.setItem('authToken', response.data.token);
+            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('userType', response.data.userType);
             navigate('/');
         } catch (error) {
             console.error('Login failed', error);
@@ -44,14 +54,17 @@ export const AuthProvider = ({ children }) => {
 
     const logout = () =>{
         setAuthToken(null);
+        setuserType(null);
         setIsAuthenticated(false);
         localStorage.removeItem('token');
+        localStorage.removeItem('userType');
+        sessionStorage.removeItem('currentPath');
         navigate('/login');
         
     };
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, authToken, login, signup, logout }}>
+        <AuthContext.Provider value={{ isAuthenticated, authToken, userType, login, signup, logout }}>
             {children}
         </AuthContext.Provider>
     );

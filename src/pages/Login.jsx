@@ -29,6 +29,10 @@ const Login = () =>{
         }
     };
 
+    const openSignup = () => {
+      navigate('/signup');
+    }
+
     return (
         <div className='form-container'>
           <div className='formm'>
@@ -37,7 +41,7 @@ const Login = () =>{
                 <h2>Sign in</h2>
               </div>
               <div className='right'>
-                <h3> <a href='/users/signup'>Create Account</a></h3>
+                <h3> <a href="/signup">Create Account</a></h3>
               </div>
             
             </div>
